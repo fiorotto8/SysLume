@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>SysLume Cluster · DGX01</title><link rel="icon" href="data:,"><script src="/static/common.js"></script><script src="/static/charts.js"></script><link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/cluster.css"><script defer src="/static/cluster-render.js"></script><script defer src="/static/cluster-history.js"></script><script defer src="/static/cluster.js"></script></head>
+<body><header class="topbar"><div class="topinner"><a class="brand" href="/"><span class="mark" aria-hidden="true"><svg viewBox="0 0 28 28" fill="none"><path d="M4 16h5l3-9 5 15 3-9h4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SysLume Cluster</a><nav aria-label="Main navigation"><a class="active" href="/" aria-current="page">Overview</a></nav><div class="header-actions"><span class="private">Private tailnet</span><button id="theme-toggle" class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark theme"><span class="theme-track" aria-hidden="true"><span class="theme-thumb"><svg class="sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="3"/><path d="M10 1v2m0 14v2M1 10h2m14 0h2M3.6 3.6 5 5m10 10 1.4 1.4M3.6 16.4 5 15M15 5l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16.8 11.4A7 7 0 0 1 8.6 3.2a7 7 0 1 0 8.2 8.2Z"/></svg></span></span><span id="theme-label">Light</span></button></div></div></header>
+<main>
+<div class="heading"><div><div class="eyebrow" id="cluster-eyebrow">DGX cluster</div><h1>Cluster overview</h1><p class="subtitle" id="cluster-subtitle">Waiting for the first reading</p></div><div class="status-wrap"><span id="connection-status" class="status">Connecting</span><div id="last-read" class="last-read">No reading yet</div></div></div>
+<div id="notice" class="notice" hidden role="status"></div>
+
+<section class="panel" id="cluster-banner-panel" aria-label="Cluster state"><div id="cluster-banner"></div></section>
+<section class="panel" id="warn-panel" hidden aria-label="Warnings"></section>
+
+<section class="node-grid" id="node-grid" aria-label="Nodes"><p class="empty">Waiting for node telemetry…</p></section>
+
+<section class="panel" id="history-panel" aria-label="Historical trends">
+<div class="panel-head"><h2>Historical trends</h2><span class="hint" id="hist-summary">read-only · local time</span></div>
+<div class="controls" style="padding:0 0 4px">
+<div class="controls-top">
+<div class="field"><label for="hist-node">Node charts</label><select id="hist-node"><option value="dgx01">DGX01</option><option value="dgx02">DGX02</option><option value="dgx03">DGX03</option></select></div>
+<div class="field"><label for="preset">Range</label><select id="preset"><option value="900">15 min</option><option value="3600">1 hour</option><option value="21600" selected>6 hours</option><option value="86400">24 hours</option><option value="604800">7 days</option><option value="2592000">30 days</option></select></div>
+<div class="live-toggle"><label class="field" style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" id="live"><span>Live</span></label></div>
+<div class="viewtools" style="border:0;margin:0;padding:0"><button id="reset">Reset</button><span class="range-label" id="range-label">—</span></div>
+</div>
+</div>
+<div class="chart-grid" id="charts"></div>
+</section>
+
+<section class="panel" id="timeline-panel" aria-label="Mode transition timeline">
+<div class="panel-head"><h2>Cluster mode timeline</h2><span class="hint" id="timeline-hint">authoritative cluster-model mode</span></div>
+<div id="timeline"><p class="empty">Loading…</p></div>
+</section>
+
+<footer class="footer"><span>Read-only cluster monitoring · no external web resources</span><span>Unavailable readings are shown as —</span></footer>
+</main></body></html>

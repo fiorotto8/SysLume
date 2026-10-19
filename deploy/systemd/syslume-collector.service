@@ -1,0 +1,16 @@
+[Unit]
+Description=SysLume per-node telemetry collector
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/pi-agent/syslume-cluster-repo
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m collectors.run_collector --config %h/.config/syslume/collector.json
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=20
+
+[Install]
+WantedBy=default.target

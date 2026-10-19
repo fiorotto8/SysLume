@@ -1,0 +1,10 @@
+{
+  "_note": "Example SysLume node-collector config. Copy to a per-node file, set the node's identity/bind/peers, and point token_file at a 0600 file containing a single Bearer token (e.g. 'cyg-<random>'). Never put the token in this file, in the repo, argv, URLs, or logs. Validated binds are fixed per node: dgx01 127.0.0.1, dgx02 192.168.0.2, dgx03 192.168.2.2. 0.0.0.0, management-LAN and Tailscale binds are rejected.",
+  "node_id": "dgx01",
+  "bind": "127.0.0.1",
+  "port": 8165,
+  "interval_seconds": 15,
+  "stale_threshold_seconds": 60,
+  "allowed_peers": ["127.0.0.1"],
+  "token_file": "/home/cygno/.config/syslume-node-collector/token.dgx01"
+}
