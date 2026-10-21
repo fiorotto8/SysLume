@@ -44,7 +44,28 @@ collectors/run_collector.py, units. Schemas were re-verified from source:
     cache{has_snapshot,fresh,fresh_window_seconds,age_seconds},
     collection_errors{collect,service,history,prune},history}
 
-## Status (COMPLETE — all code + deployment done; one operator step left)
+## Current verification — 21 October 2026
+
+Read-only checks confirm the operator steps below have been completed:
+
+- Tailscale Serve routes HTTPS 443 to the dashboard on loopback port 8765;
+  the independent gateway route on 8443 still points to loopback port 8101.
+- All three collectors are active and enabled as systemd user services.
+  Both worker accounts now have `Linger=yes`; the detached supervisor is
+  historical fallback tooling, not the current collector launch method.
+- The controller reports healthy split mode, without a transition. Both
+  workers are fully GPU-resident at context 262144.
+- Dashboard `/healthz` reports a fresh cache and no collection, service,
+  history, or prune errors. All three nodes are online with fresh samples;
+  node, service, and cluster history endpoints return stored data.
+- Validation: 324 Python tests and 29 pytest subtests pass; frontend split
+  and heavy fixture smoke tests pass; shell and JavaScript syntax checks pass.
+  Heavy inference was not started or benchmarked during this review.
+
+The checkpoint below records the original deployment session. Its PIDs,
+commit references, and outstanding operator steps are historical.
+
+## Original deployment checkpoint (superseded by verification above)
 - [x] Baseline: full pytest suite green.
 - [x] S1 cluster/http_api.py: opt-in static_root serving (explicit routes only).
 - [x] S2 cluster/app.py: load_config + ClusterApp + build_app + main

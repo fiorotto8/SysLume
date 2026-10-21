@@ -162,6 +162,27 @@ journalctl -u syslume -n 50 --no-pager
 Use `sudo systemctl stop syslume` or `sudo systemctl start syslume` to stop
 or start it. Its database is at `/opt/syslume/data/monitor.db`.
 
+## Cluster dashboard
+
+The repository also includes a multi-node dashboard: authenticated per-node
+collectors, a central aggregator, SQLite history, and a browser interface for
+node and inference-service telemetry. It runs independently of the original
+single-host monitor.
+
+The entry points are `python3 -m collectors.run_collector --config <path>`
+and `python3 -m cluster.app --config <path>`. See
+[collector.config.example.json](collector.config.example.json),
+[deploy/configs.py](deploy/configs.py), and the user-service templates under
+`deploy/systemd/`. These templates require paths and private bind addresses
+appropriate to the deployment. `install.sh` installs the single-host monitor;
+it does not deploy the cluster services. Keep generated configuration and
+collector tokens outside the checkout.
+
+Check the cluster frontend with `node tests/frontend/smoke.js`; the Python
+suite below also covers the collectors, aggregator, HTTP API, and history.
+The central service exposes `/healthz` and `/api/cluster/current` for live
+verification. Heavy-mode frontend tests use fixtures and do not start models.
+
 ## Test and contribute
 
 Tests need no configuration, NVIDIA GPU, or Tailscale connection. They use temporary
